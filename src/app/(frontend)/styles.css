@@ -1,0 +1,45 @@
+:root {
+  --green: #0f4d3a;
+  --green-dark: #0a3629;
+  --gold: #c9a24a;
+  --bg: #fbfaf6;
+  --ink: #1b2420;
+  --muted: #5b6760;
+  --line: #e2dfd3;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; /* system fonts: zero download */
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+}
+a { color: var(--green); }
+.site-header, .site-footer { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; gap: 12px; }
+.site-header { border-bottom: 1px solid var(--line); }
+.site-header nav { display: flex; align-items: center; gap: 16px; }
+.brand { font-weight: 700; text-decoration: none; color: var(--green); }
+.site-footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; margin-top: 48px; }
+.wrap { max-width: 720px; margin: 0 auto; padding: 24px 16px; }
+.hero { background: var(--green); color: #fff; padding: 56px 16px; text-align: center; }
+.hero h1 { margin: 0 auto 12px; max-width: 18ch; font-size: clamp(28px, 6vw, 44px); line-height: 1.15; }
+.hero p { margin: 0 auto 24px; max-width: 52ch; color: #dcebe4; }
+.btn {
+  display: inline-block; min-height: 44px; padding: 10px 20px; border: 0; border-radius: 8px;
+  background: var(--gold); color: #1b1503; font-weight: 700; font-size: 16px; text-decoration: none; cursor: pointer;
+}
+.btn:disabled { opacity: 0.6; cursor: wait; }
+.counters { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 24px 0; }
+.counter { background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 16px; text-align: center; }
+.counter strong { display: block; font-size: 28px; color: var(--green); }
+form.stack { display: grid; gap: 14px; }
+label { display: grid; gap: 4px; font-weight: 600; font-size: 15px; }
+input, select, textarea { font: inherit; min-height: 44px; padding: 8px 10px; border: 1px solid #b9b5a5; border-radius: 8px; background: #fff; }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; }
+.presets button { min-height: 44px; padding: 0 16px; border: 1px solid var(--green); background: #fff; color: var(--green); border-radius: 8px; font-weight: 600; cursor: pointer; }
+.presets button[aria-pressed='true'] { background: var(--green); color: #fff; }
+.error { color: #a12; font-weight: 600; }
+.doc-list { list-style: none; padding: 0; }
+.doc-list li { padding: 10px 0; border-bottom: 1px solid var(--line); }
