@@ -3,6 +3,8 @@
 Next.js 16 + Payload CMS 3 + PostgreSQL + Paystack. One codebase, one deploy.
 Admin panel lives at `/admin`; public site at `/`.
 
+See `doc/CHANGELOG.md` for what changed and `doc/NEXT-STEPS.md` for what to do next.
+
 ## Run locally
 1. `cp .env.example .env` and fill in `DATABASE_URL`, `PAYLOAD_SECRET`, `PAYSTACK_SECRET_KEY` (test key).
 2. `pnpm install`
