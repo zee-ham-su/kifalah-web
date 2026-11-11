@@ -1,5 +1,7 @@
 # Next steps
 
+**Rule:** whenever a change adds or renames an env var, update BOTH `.env.example` (committed, no secrets) and the local `.env` (git-ignored), and note it in `doc/CHANGELOG.md`.
+
 Ordered by what unblocks launch. P0/P1 refer to the PRD priorities.
 
 ## Before anything goes live (not code, start now)
