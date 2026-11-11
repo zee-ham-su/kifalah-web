@@ -23,7 +23,8 @@ Production applies pending migrations on boot. Then `pnpm generate:types`.
 - Collections: Pages, Posts (stories need a consent tick to publish), Media, Documents (Transparency Hub), Donations, Applications, Inbox (form submissions), Users; Global: Site settings (impact counters, contact, legal/bank).
 - Roles: super-admin, editor, finance, programme-officer, reviewer (see `src/lib/access.ts`).
 - Giving: `/donate` > Paystack hosted checkout (MoMo/card) > webhook is the source of truth (`src/lib/settleDonation.ts`, idempotent, re-verifies amount and currency).
+- Receipts: email (Resend) + SMS (Hubtel) sent once per donation, atomically claimed so webhook/redirect races can't double-send; failures release the claim and retry on the next webhook.
 - Public pages: `/`, `/donate`, `/donate/thanks`, `/transparency`; `POST /api/contact` (honeypot).
 
 ## Not built yet (next)
-Receipt email/SMS (stub in settleDonation), recurring giving (Paystack Plans), scholarship multi-step form + save-and-resume + uploads with virus scan, admin 2FA, rate limiting, page/post/about/programme routes, CSV export + donation dashboard, SEO metadata/sitemap, GBP (confirm with Paystack), Zakat labelling (needs the Foundation's decision).
+Recurring giving (Paystack Plans), scholarship multi-step form + save-and-resume + uploads with virus scan, admin 2FA, rate limiting, page/post/about/programme routes, CSV export + donation dashboard, SEO metadata/sitemap, GBP (confirm with Paystack), Zakat labelling (needs the Foundation's decision).
