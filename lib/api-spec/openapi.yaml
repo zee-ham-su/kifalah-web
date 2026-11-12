@@ -1,0 +1,975 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: Kifalah Foundation Ghana API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: programmes
+    description: Foundation programmes
+  - name: news
+    description: News articles and stories
+  - name: impact
+    description: Impact statistics
+  - name: contact
+    description: Contact form submissions
+  - name: volunteer
+    description: Volunteer applications
+  - name: partnership
+    description: Partnership enquiries
+  - name: newsletter
+    description: Newsletter subscriptions
+  - name: donations
+    description: Pledges (intent to give). No payments are processed.
+  - name: documents
+    description: Reports and documents
+  - name: admin
+    description: Admin operations
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  # ---------- PROGRAMMES ----------
+  /programmes:
+    get:
+      operationId: listProgrammes
+      tags: [programmes]
+      summary: List all programmes
+      parameters:
+        - name: featured
+          in: query
+          schema: { type: boolean }
+      responses:
+        "200":
+          description: List of programmes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Programme"
+    post:
+      operationId: createProgramme
+      tags: [programmes]
+      summary: Create a programme (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProgrammeInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Programme"
+
+  /programmes/{id}:
+    get:
+      operationId: getProgramme
+      tags: [programmes]
+      summary: Get a programme by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      responses:
+        "200":
+          description: Programme
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Programme"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateProgramme
+      tags: [programmes]
+      summary: Update a programme (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ProgrammeUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Programme"
+    delete:
+      operationId: deleteProgramme
+      tags: [programmes]
+      summary: Delete a programme (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      responses:
+        "204":
+          description: Deleted
+
+  # ---------- NEWS / STORIES ----------
+  /news:
+    get:
+      operationId: listNews
+      tags: [news]
+      summary: List news articles
+      parameters:
+        - name: category
+          in: query
+          schema: { type: string }
+        - name: featured
+          in: query
+          schema: { type: boolean }
+        - name: limit
+          in: query
+          schema: { type: number }
+        - name: offset
+          in: query
+          schema: { type: number }
+      responses:
+        "200":
+          description: List of news articles
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsArticle"
+    post:
+      operationId: createNewsArticle
+      tags: [news]
+      summary: Create a news article (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsArticleInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsArticle"
+
+  /news/{id}:
+    get:
+      operationId: getNewsArticle
+      tags: [news]
+      summary: Get a news article by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      responses:
+        "200":
+          description: News article
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsArticle"
+        "404":
+          description: Not found
+    patch:
+      operationId: updateNewsArticle
+      tags: [news]
+      summary: Update a news article (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsArticleUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsArticle"
+    delete:
+      operationId: deleteNewsArticle
+      tags: [news]
+      summary: Delete a news article (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      responses:
+        "204":
+          description: Deleted
+
+  # ---------- IMPACT STATS ----------
+  /impact-stats:
+    get:
+      operationId: listImpactStats
+      tags: [impact]
+      summary: List all impact statistics
+      responses:
+        "200":
+          description: List of impact stats
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ImpactStat"
+    post:
+      operationId: createImpactStat
+      tags: [impact]
+      summary: Create an impact stat (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImpactStatInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImpactStat"
+
+  /impact-stats/{id}:
+    patch:
+      operationId: updateImpactStat
+      tags: [impact]
+      summary: Update an impact stat (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ImpactStatUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ImpactStat"
+    delete:
+      operationId: deleteImpactStat
+      tags: [impact]
+      summary: Delete an impact stat (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      responses:
+        "204":
+          description: Deleted
+
+  # ---------- CONTACT MESSAGES ----------
+  /contact:
+    post:
+      operationId: submitContact
+      tags: [contact]
+      summary: Submit a contact message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ContactMessageInput"
+      responses:
+        "201":
+          description: Submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactMessage"
+
+  /admin/contact:
+    get:
+      operationId: listContactMessages
+      tags: [contact, admin]
+      summary: List all contact messages (admin)
+      responses:
+        "200":
+          description: List of contact messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ContactMessage"
+
+  /admin/contact/{id}/read:
+    patch:
+      operationId: markContactRead
+      tags: [contact, admin]
+      summary: Mark a contact message as read (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ContactMessage"
+
+  # ---------- VOLUNTEER APPLICATIONS ----------
+  /volunteer:
+    post:
+      operationId: submitVolunteerApplication
+      tags: [volunteer]
+      summary: Submit a volunteer application
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VolunteerApplicationInput"
+      responses:
+        "201":
+          description: Submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VolunteerApplication"
+
+  /admin/volunteers:
+    get:
+      operationId: listVolunteerApplications
+      tags: [volunteer, admin]
+      summary: List all volunteer applications (admin)
+      responses:
+        "200":
+          description: List of volunteer applications
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VolunteerApplication"
+
+  /admin/volunteers/{id}/status:
+    patch:
+      operationId: updateVolunteerStatus
+      tags: [volunteer, admin]
+      summary: Update volunteer application status (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VolunteerStatusUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VolunteerApplication"
+
+  # ---------- PARTNERSHIP ENQUIRIES ----------
+  /partnership:
+    post:
+      operationId: submitPartnershipEnquiry
+      tags: [partnership]
+      summary: Submit a partnership enquiry
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartnershipEnquiryInput"
+      responses:
+        "201":
+          description: Submitted
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PartnershipEnquiry"
+
+  /admin/partnerships:
+    get:
+      operationId: listPartnershipEnquiries
+      tags: [partnership, admin]
+      summary: List all partnership enquiries (admin)
+      responses:
+        "200":
+          description: List of partnership enquiries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/PartnershipEnquiry"
+
+  /admin/partnerships/{id}/status:
+    patch:
+      operationId: updatePartnershipStatus
+      tags: [partnership, admin]
+      summary: Update partnership enquiry status (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PartnershipStatusUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PartnershipEnquiry"
+
+  # ---------- NEWSLETTER ----------
+  /newsletter:
+    post:
+      operationId: subscribeNewsletter
+      tags: [newsletter]
+      summary: Subscribe to newsletter
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewsletterSubscriberInput"
+      responses:
+        "201":
+          description: Subscribed
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/NewsletterSubscriber"
+
+  /admin/newsletter:
+    get:
+      operationId: listNewsletterSubscribers
+      tags: [newsletter, admin]
+      summary: List newsletter subscribers (admin)
+      responses:
+        "200":
+          description: List of subscribers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/NewsletterSubscriber"
+
+  # ---------- DONATIONS ----------
+  /donations:
+    post:
+      operationId: createDonationRecord
+      tags: [donations]
+      summary: Record a donation intent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DonationInput"
+      responses:
+        "201":
+          description: Recorded
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Donation"
+
+  /admin/donations:
+    get:
+      operationId: listDonations
+      tags: [donations, admin]
+      summary: List all donations (admin)
+      responses:
+        "200":
+          description: List of donations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Donation"
+
+  /admin/donations/{id}/status:
+    patch:
+      operationId: updateDonationStatus
+      tags: [donations, admin]
+      summary: Update a pledge status (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DonationStatusUpdate"
+      responses:
+        "200":
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Donation"
+
+  # ---------- DOCUMENTS ----------
+  /documents:
+    get:
+      operationId: listDocuments
+      tags: [documents]
+      summary: List public documents
+      parameters:
+        - name: category
+          in: query
+          schema: { type: string }
+      responses:
+        "200":
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Document"
+    post:
+      operationId: createDocument
+      tags: [documents, admin]
+      summary: Create a document record (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DocumentInput"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Document"
+
+  /documents/{id}:
+    delete:
+      operationId: deleteDocument
+      tags: [documents, admin]
+      summary: Delete a document (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: number }
+      responses:
+        "204":
+          description: Deleted
+
+  # ---------- ADMIN SUMMARY ----------
+  /admin/summary:
+    get:
+      operationId: getAdminSummary
+      tags: [admin]
+      summary: Get admin dashboard summary stats
+      responses:
+        "200":
+          description: Summary stats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminSummary"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    # ---- Programme ----
+    Programme:
+      type: object
+      required: [id, slug, title, description, icon, featured, createdAt]
+      properties:
+        id: { type: number }
+        slug: { type: string }
+        title: { type: string }
+        description: { type: string }
+        fullDescription: { type: ["string", "null"] }
+        icon: { type: string }
+        imageUrl: { type: ["string", "null"] }
+        goal: { type: ["string", "null"] }
+        targetBeneficiaries: { type: ["string", "null"] }
+        keyActivities: { type: ["string", "null"] }
+        featured: { type: boolean }
+        sortOrder: { type: number }
+        createdAt: { type: string }
+
+    ProgrammeInput:
+      type: object
+      required: [slug, title, description, icon]
+      properties:
+        slug: { type: string }
+        title: { type: string }
+        description: { type: string }
+        fullDescription: { type: string }
+        icon: { type: string }
+        imageUrl: { type: string }
+        goal: { type: string }
+        targetBeneficiaries: { type: string }
+        keyActivities: { type: string }
+        featured: { type: boolean }
+        sortOrder: { type: number }
+
+    ProgrammeUpdate:
+      type: object
+      properties:
+        slug: { type: string }
+        title: { type: string }
+        description: { type: string }
+        fullDescription: { type: string }
+        icon: { type: string }
+        imageUrl: { type: string }
+        goal: { type: string }
+        targetBeneficiaries: { type: string }
+        keyActivities: { type: string }
+        featured: { type: boolean }
+        sortOrder: { type: number }
+
+    # ---- NewsArticle ----
+    NewsArticle:
+      type: object
+      required: [id, title, slug, excerpt, category, published, createdAt]
+      properties:
+        id: { type: number }
+        title: { type: string }
+        slug: { type: string }
+        excerpt: { type: string }
+        content: { type: ["string", "null"] }
+        imageUrl: { type: ["string", "null"] }
+        category: { type: string }
+        author: { type: ["string", "null"] }
+        published: { type: boolean }
+        featured: { type: boolean }
+        publishedAt: { type: ["string", "null"] }
+        createdAt: { type: string }
+
+    NewsArticleInput:
+      type: object
+      required: [title, slug, excerpt, category]
+      properties:
+        title: { type: string }
+        slug: { type: string }
+        excerpt: { type: string }
+        content: { type: string }
+        imageUrl: { type: string }
+        category: { type: string }
+        author: { type: string }
+        published: { type: boolean }
+        featured: { type: boolean }
+        publishedAt: { type: string }
+
+    NewsArticleUpdate:
+      type: object
+      properties:
+        title: { type: string }
+        slug: { type: string }
+        excerpt: { type: string }
+        content: { type: string }
+        imageUrl: { type: string }
+        category: { type: string }
+        author: { type: string }
+        published: { type: boolean }
+        featured: { type: boolean }
+        publishedAt: { type: string }
+
+    # ---- ImpactStat ----
+    ImpactStat:
+      type: object
+      required: [id, label, value, unit, icon, sortOrder]
+      properties:
+        id: { type: number }
+        label: { type: string }
+        value: { type: string }
+        unit: { type: ["string", "null"] }
+        description: { type: ["string", "null"] }
+        icon: { type: string }
+        sortOrder: { type: number }
+
+    ImpactStatInput:
+      type: object
+      required: [label, value, icon]
+      properties:
+        label: { type: string }
+        value: { type: string }
+        unit: { type: string }
+        description: { type: string }
+        icon: { type: string }
+        sortOrder: { type: number }
+
+    ImpactStatUpdate:
+      type: object
+      properties:
+        label: { type: string }
+        value: { type: string }
+        unit: { type: string }
+        description: { type: string }
+        icon: { type: string }
+        sortOrder: { type: number }
+
+    # ---- ContactMessage ----
+    ContactMessage:
+      type: object
+      required: [id, name, email, subject, message, read, createdAt]
+      properties:
+        id: { type: number }
+        name: { type: string }
+        email: { type: string }
+        phone: { type: ["string", "null"] }
+        subject: { type: string }
+        message: { type: string }
+        read: { type: boolean }
+        createdAt: { type: string }
+
+    ContactMessageInput:
+      type: object
+      required: [name, email, subject, message]
+      properties:
+        name: { type: string }
+        email: { type: string }
+        phone: { type: string }
+        subject: { type: string }
+        message: { type: string }
+
+    # ---- VolunteerApplication ----
+    VolunteerApplication:
+      type: object
+      required: [id, fullName, email, phone, location, skills, areaOfInterest, availability, motivation, status, createdAt]
+      properties:
+        id: { type: number }
+        fullName: { type: string }
+        email: { type: string }
+        phone: { type: string }
+        location: { type: string }
+        skills: { type: string }
+        areaOfInterest: { type: string }
+        availability: { type: string }
+        motivation: { type: string }
+        status: { type: string }
+        createdAt: { type: string }
+
+    VolunteerApplicationInput:
+      type: object
+      required: [fullName, email, phone, location, skills, areaOfInterest, availability, motivation]
+      properties:
+        fullName: { type: string }
+        email: { type: string }
+        phone: { type: string }
+        location: { type: string }
+        skills: { type: string }
+        areaOfInterest: { type: string }
+        availability: { type: string }
+        motivation: { type: string }
+
+    VolunteerStatusUpdate:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string }
+
+    # ---- PartnershipEnquiry ----
+    PartnershipEnquiry:
+      type: object
+      required: [id, organisationName, contactName, email, organisationType, message, status, createdAt]
+      properties:
+        id: { type: number }
+        organisationName: { type: string }
+        contactName: { type: string }
+        email: { type: string }
+        phone: { type: ["string", "null"] }
+        organisationType: { type: string }
+        website: { type: ["string", "null"] }
+        message: { type: string }
+        status: { type: string }
+        createdAt: { type: string }
+
+    PartnershipEnquiryInput:
+      type: object
+      required: [organisationName, contactName, email, organisationType, message]
+      properties:
+        organisationName: { type: string }
+        contactName: { type: string }
+        email: { type: string }
+        phone: { type: string }
+        organisationType: { type: string }
+        website: { type: string }
+        message: { type: string }
+
+    PartnershipStatusUpdate:
+      type: object
+      required: [status]
+      properties:
+        status: { type: string }
+
+    # ---- NewsletterSubscriber ----
+    NewsletterSubscriber:
+      type: object
+      required: [id, fullName, email, createdAt]
+      properties:
+        id: { type: number }
+        fullName: { type: string }
+        email: { type: string }
+        createdAt: { type: string }
+
+    NewsletterSubscriberInput:
+      type: object
+      required: [fullName, email]
+      properties:
+        fullName: { type: string }
+        email: { type: string }
+
+    # ---- Donation ----
+    Donation:
+      type: object
+      required: [id, donorName, email, amount, currency, frequency, programme, status, createdAt]
+      properties:
+        id: { type: number }
+        donorName: { type: string }
+        email: { type: string }
+        phone: { type: ["string", "null"] }
+        amount: { type: ["number", "null"] }
+        currency: { type: string }
+        frequency: { type: string }
+        programme: { type: ["string", "null"] }
+        inKindSupport: { type: ["string", "null"] }
+        message: { type: ["string", "null"] }
+        paymentMethod: { type: ["string", "null"] }
+        status: { type: string }
+        createdAt: { type: string }
+
+    # A pledge records intent only. It never moves money.
+    DonationInput:
+      type: object
+      required: [donorName, email]
+      properties:
+        donorName: { type: string }
+        email: { type: string }
+        phone: { type: string }
+        amount: { type: number }
+        currency: { type: string }
+        inKindSupport: { type: string }
+        programme: { type: string }
+        message: { type: string }
+
+    DonationStatusUpdate:
+      type: object
+      required: [status]
+      properties:
+        status:
+          type: string
+          enum: [pledged, received, follow_up]
+
+    # ---- Document ----
+    Document:
+      type: object
+      required: [id, title, category, fileUrl, fileType, createdAt]
+      properties:
+        id: { type: number }
+        title: { type: string }
+        description: { type: ["string", "null"] }
+        category: { type: string }
+        fileUrl: { type: string }
+        fileType: { type: string }
+        fileSize: { type: ["string", "null"] }
+        year: { type: ["number", "null"] }
+        published: { type: boolean }
+        createdAt: { type: string }
+
+    DocumentInput:
+      type: object
+      required: [title, category, fileUrl, fileType]
+      properties:
+        title: { type: string }
+        description: { type: string }
+        category: { type: string }
+        fileUrl: { type: string }
+        fileType: { type: string }
+        fileSize: { type: string }
+        year: { type: number }
+        published: { type: boolean }
+
+    # ---- AdminSummary ----
+    AdminSummary:
+      type: object
+      required: [totalContactMessages, unreadContactMessages, totalVolunteers, pendingVolunteers, totalPartnerships, pendingPartnerships, totalSubscribers, totalDonations, totalDonationAmount, recentNewsCount]
+      properties:
+        totalContactMessages: { type: number }
+        unreadContactMessages: { type: number }
+        totalVolunteers: { type: number }
+        pendingVolunteers: { type: number }
+        totalPartnerships: { type: number }
+        pendingPartnerships: { type: number }
+        totalSubscribers: { type: number }
+        totalDonations: { type: number }
+        totalDonationAmount: { type: number }
+        recentNewsCount: { type: number }

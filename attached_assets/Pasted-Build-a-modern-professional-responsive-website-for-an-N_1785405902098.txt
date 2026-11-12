@@ -1,0 +1,370 @@
+Build a modern, professional, responsive website for an NGO called:
+
+KIFALAH FOUNDATION GHANA
+
+Tagline:
+“Empowering Communities. Transforming Lives. Building Futures.”
+
+Organisation Overview:
+Kifalah Foundation Ghana is a non-profit humanitarian and community development organisation dedicated to improving lives through education, economic empowerment, social welfare, humanitarian assistance, infrastructure development, and sustainable livelihood programmes.
+
+The Foundation is inspired by the Islamic values of:
+- Rahmah — Compassion
+- Adl — Justice
+- Amanah — Trust
+- Ihsan — Excellence
+
+The website should feel inclusive and welcoming to people of all backgrounds while respectfully reflecting the Foundation’s Islamic-inspired values. Avoid making the design feel like a religious institution website. It should look like a credible, modern, transparent, internationally recognised development organisation.
+
+Design Requirements:
+- Clean, modern, premium NGO website
+- Warm, trustworthy, compassionate, and hopeful
+- Fully responsive for mobile, tablet, and desktop
+- Accessible and easy to navigate
+- Use generous spacing and clear typography
+- Use subtle animations and smooth transitions
+- Use authentic-looking images of Ghanaian communities, students, women entrepreneurs, young people, rural communities, education, skills training, humanitarian support, and community development
+- Avoid generic corporate stock imagery
+- Use a professional colour palette:
+  - Deep emerald green as the primary colour
+  - Gold accents
+  - White and soft neutral backgrounds
+  - Dark charcoal text
+- Include subtle Ghanaian cultural visual elements where appropriate
+- Use British English spelling throughout
+
+Main Navigation:
+Home | About Us | Our Programmes | Impact | Get Involved | News & Stories | Transparency | Contact | Donate
+
+HOME PAGE
+
+1. Hero Section
+Create a powerful full-width hero section with an inspiring image or short background video showing Ghanaian communities, education, and empowerment.
+
+Headline:
+“Empowering Communities. Transforming Lives. Building Futures.”
+
+Supporting text:
+“We empower vulnerable and underserved communities across Ghana through education, economic opportunity, humanitarian support, and sustainable development.”
+
+Primary CTA:
+“Donate Now”
+
+Secondary CTA:
+“Explore Our Work”
+
+Include a small trust statement:
+“Building sustainable opportunities for individuals, families, and communities across Ghana.”
+
+2. Impact Statistics
+Create visually attractive animated impact cards with editable placeholder figures:
+
+- 5,000+ Lives Impacted
+- 1,000+ Students Supported
+- 500+ Women Empowered
+- 30+ Communities Reached
+
+Clearly label these figures as sample or editable data until official statistics are provided.
+
+3. About Kifalah Foundation Ghana
+Headline:
+“Creating Lasting Change Across Ghana”
+
+Text:
+“Kifalah Foundation Ghana works with communities to address barriers to education, economic opportunity, healthcare, social welfare, and sustainable development. Our programmes are designed to empower people, strengthen communities, and create long-term impact.”
+
+Include:
+- Learn More button
+- Image of community engagement or a Ghanaian development project
+
+4. Our Programme Areas
+Create six attractive programme cards with icons, images, short descriptions, and “Learn More” links:
+
+A. Education and Scholarship Programme
+Supporting access to quality education through scholarships, school supplies, digital literacy, ICT centres, mentorship, career guidance, and learning opportunities.
+
+B. Women Empowerment Programme
+Supporting women through vocational training, entrepreneurship, financial literacy, business development, leadership programmes, and access to funding opportunities.
+
+C. Youth Employment and Skills Development
+Preparing young people for employment through coding boot camps, digital skills, apprenticeships, vocational training, entrepreneurship, career readiness, and job placement support.
+
+D. Community Development and Infrastructure
+Improving communities through schools, libraries, ICT centres, boreholes, water projects, health facilities, renewable energy, sanitation, and community spaces.
+
+E. Humanitarian and Social Welfare Programme
+Providing support for orphans, widows, vulnerable households, medical needs, food assistance, emergency relief, child protection, and NHIS registration.
+
+F. Waqf and Sustainability Programme
+Developing sustainable funding through endowments, Waqf projects, social enterprises, community development funds, and income-generating investments.
+
+5. Featured Story
+Create a large featured impact story section with:
+- Beneficiary image
+- Story title
+- Short story excerpt
+- “Read the Full Story” button
+
+Use realistic placeholder content that can easily be replaced.
+
+6. Get Involved
+Create four action cards:
+- Donate
+- Volunteer
+- Partner With Us
+- Support a Programme
+
+Each card should have a clear CTA.
+
+7. Latest News and Stories
+Display three recent articles with:
+- Featured image
+- Category
+- Date
+- Title
+- Short excerpt
+- Read More link
+
+8. Newsletter
+Headline:
+“Stay Connected to Our Impact”
+
+Text:
+“Receive updates about our programmes, community stories, opportunities, and upcoming initiatives.”
+
+Fields:
+- Full Name
+- Email Address
+
+Button:
+“Subscribe”
+
+9. Footer
+Include:
+- Kifalah Foundation Ghana logo
+- Tagline
+- Quick links
+- Programme links
+- Contact details
+- Social media icons
+- Newsletter link
+- Privacy Policy
+- Terms and Conditions
+- Copyright:
+“© 2026 Kifalah Foundation Ghana. All Rights Reserved.”
+
+ABOUT US PAGE
+
+Include:
+- Organisation background
+- Vision
+- Mission
+- Core values
+- Our approach
+- Leadership and governance
+- Where we work
+- Timeline or organisational journey
+
+Vision:
+“To build a Ghana where every individual, regardless of social or economic background, has access to quality education, economic opportunities, healthcare, and the resources necessary to achieve their full potential.”
+
+Mission:
+“To empower vulnerable and underserved communities through education, economic empowerment, humanitarian assistance, infrastructure development, and sustainable livelihood programmes inspired by Islamic values and guided by principles of equity, inclusion, and service.”
+
+Core Values:
+- Amanah — Trust
+- Ihsan — Excellence
+- Adl — Justice
+- Rahmah — Compassion
+- Sustainability
+
+OUR PROGRAMMES PAGE
+
+Create a detailed page for all six strategic programmes.
+
+Each programme should include:
+- Programme overview
+- Goal
+- Key activities
+- Target beneficiaries
+- Current or upcoming projects
+- Related stories
+- Donate to this programme button
+
+IMPACT PAGE
+
+Create an engaging impact dashboard featuring:
+- Total beneficiaries
+- Students supported
+- Women empowered
+- Youth trained
+- Communities reached
+- Projects completed
+- Regional coverage
+
+Include:
+- Interactive Ghana map
+- Project locations
+- Impact stories
+- Before-and-after project sections
+- Photo gallery
+- Annual impact reports
+
+Use clearly marked sample data until official data is provided.
+
+GET INVOLVED PAGE
+
+Create sections for:
+
+1. Donate
+Include donation options:
+- One-time donation
+- Monthly donation
+- Sponsor a student
+- Support women’s businesses
+- Fund youth skills training
+- Support humanitarian relief
+- Support community infrastructure
+- Support Waqf and sustainability initiatives
+
+Donation form:
+- Donation amount
+- Custom amount
+- Donation frequency
+- Name
+- Email
+- Phone number
+- Optional message
+
+Prepare the structure for Ghana-friendly payment integrations such as:
+- Mobile Money
+- Visa
+- Mastercard
+- Bank transfer
+
+Do not process real payments until a secure payment provider is connected.
+
+2. Volunteer
+Create a volunteer application form:
+- Full name
+- Email
+- Phone
+- Location
+- Skills or expertise
+- Area of interest
+- Availability
+- Short motivation statement
+
+3. Partner With Us
+Target:
+- Businesses
+- NGOs
+- Government institutions
+- Development partners
+- Schools
+- Community organisations
+- Donors
+
+Include a partnership enquiry form.
+
+4. Fundraise
+Allow supporters to create or join fundraising campaigns.
+
+TRANSPARENCY AND ACCOUNTABILITY PAGE
+
+Highlight the Foundation’s commitment to:
+- Financial accountability
+- Audited financial records
+- Annual reports
+- Independent evaluations
+- Transparent procurement
+- Safeguarding policies
+- Strong governance
+
+Include download sections for:
+- Annual reports
+- Financial reports
+- Audit reports
+- Policies
+- Strategic plans
+
+Use placeholder documents where official files are not yet available.
+
+NEWS AND STORIES PAGE
+
+Include:
+- News articles
+- Programme updates
+- Community stories
+- Beneficiary stories
+- Events
+- Photo galleries
+- Search functionality
+- Category filters
+
+CONTACT PAGE
+
+Include:
+- Contact form
+- Office address placeholder
+- Phone number placeholder
+- Official email placeholder
+- Office hours
+- Interactive map
+- Social media links
+
+Contact form fields:
+- Name
+- Email
+- Phone
+- Subject
+- Message
+
+Add clear success and error messages after form submission.
+
+ADMIN DASHBOARD
+
+Build a secure admin dashboard that allows authorised staff to:
+- Manage website content
+- Create and edit programmes
+- Publish news and stories
+- Upload images and documents
+- Manage impact statistics
+- Review contact messages
+- Review volunteer applications
+- Review partnership enquiries
+- Manage donation records
+- Upload annual reports and policies
+- Manage users and roles
+
+Technical Requirements:
+- Use a modern component-based architecture
+- Build reusable UI components
+- Use clean, maintainable, production-quality code
+- Optimise images and page performance
+- Include SEO metadata for every page
+- Add Open Graph metadata for social sharing
+- Use semantic HTML
+- Follow WCAG accessibility principles
+- Add form validation
+- Add secure server-side validation
+- Protect admin routes with authentication and role-based access control
+- Use secure file uploads
+- Add loading states, empty states, and error states
+- Use a scalable database structure
+- Prepare the platform for future integration with payment gateways, email services, analytics, and SMS notifications
+
+Suggested Technology Stack:
+- Frontend: Next.js with TypeScript
+- Styling: Tailwind CSS
+- Backend: Next.js API routes or NestJS
+- Database: PostgreSQL
+- ORM: Prisma or TypeORM
+- Authentication: Secure role-based authentication
+- File storage: Cloud-based object storage
+- Deployment: Production-ready cloud deployment
+
+Important:
+Do not use fake claims, fake partner logos, or fabricated impact statistics. Clearly mark all sample figures, testimonials, project details, reports, contact information, and payment settings as placeholders until verified information is provided.
+
+Create the complete website with polished layouts, reusable components, realistic placeholder content, responsive design, and a professional NGO experience suitable for donors, partners, volunteers, beneficiaries, and the general public.
