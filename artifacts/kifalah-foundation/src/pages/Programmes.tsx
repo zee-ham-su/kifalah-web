@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { useListProgrammes } from '@workspace/api-client-react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
@@ -13,6 +14,7 @@ const defaultIcons: Record<string, any> = {
 };
 
 export function Programmes() {
+  usePageMeta("Our Programmes", "Our programmes in education and scholarships, women's empowerment, youth skills, community development and humanitarian relief.");
   const { data: programmes, isLoading } = useListProgrammes();
 
   return (

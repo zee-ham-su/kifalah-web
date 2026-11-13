@@ -1,9 +1,11 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { useListDocuments } from '@workspace/api-client-react';
 import { FileText, Download, TrendingUp, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { format } from 'date-fns';
 
 export function Transparency() {
+  usePageMeta("Transparency and Reports", "Annual reports, financial statements and policies from Kifalah Foundation Ghana.");
   const { data: documents, isLoading } = useListDocuments({ category: 'financial' });
 
   return (

@@ -13,12 +13,14 @@
 8. Upload real reports and policies on the Transparency page via Admin > Documents.
 
 ## Build next
-- **Page weight**: the main JavaScript bundle is about 700 kB before compression. Add route-level code splitting (`React.lazy`) so phones on mobile data load less; compress the large JPEGs (some are 150-180 kB).
+- **Sitemap and link previews.** Needs the live domain: publish `sitemap.xml`, add the `Sitemap:` line in `public/robots.txt`, and add an `og:image` (absolute URL). Titles/descriptions are set in the browser, which Google reads, but WhatsApp/Facebook link previews only see the site-wide tags in `index.html`. If per-page previews matter, add prerendering.
+- **Fill in social links** in `src/config/site.ts` (`social`). Icons stay hidden until you do.
+- **Delete unused images** `clean-water.jpg` and `relief.jpg` from `attached_assets/generated_images` if the Foundation will not use them.
+- **Detail pages fetch the whole list** to find an item by slug (programmes and news). Fine for a small site; add a slug endpoint if the lists grow.
 - **CAPTCHA** (Cloudflare Turnstile is free) if spam still gets through the rate limit.
-- **SEO**: per-page titles and descriptions, social preview image, sitemap.xml.
 - **Social share** buttons on news articles (F10).
 - **Backups and uptime** monitoring for the database.
-- Footer social icons: check that they link to the Foundation's real accounts.
+- **Lighthouse / WCAG pass** on a real device on mobile data (not done yet).
 
 ## Later (out of scope now)
 Online payments (Paystack/Hubtel/Flutterwave), donor and applicant accounts, scholarship portal, Hausa and other languages.

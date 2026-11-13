@@ -1,7 +1,9 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { useListImpactStats } from '@workspace/api-client-react';
 import { Target, Users, MapPin, Heart, Activity } from 'lucide-react';
 
 export function Impact() {
+  usePageMeta("Our Impact", "See the difference Kifalah Foundation Ghana is making: our impact in numbers and stories.");
   const { data: stats, isLoading } = useListImpactStats();
 
   return (

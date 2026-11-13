@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { useGetNewsArticle, useListNews } from '@workspace/api-client-react';
 import { useParams, Link } from 'wouter';
 import { ArrowLeft } from 'lucide-react';
@@ -11,6 +12,7 @@ export function NewsArticle() {
   // To resolve slug to ID without a custom endpoint:
   const { data: newsList, isLoading: listLoading } = useListNews();
   const articleMeta = newsList?.find(n => n.slug === slug);
+  usePageMeta(articleMeta?.title ?? 'News', articleMeta?.excerpt);
   const id = articleMeta?.id;
 
   const { data: article, isLoading: articleLoading } = useGetNewsArticle(id as number, { 

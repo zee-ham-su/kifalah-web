@@ -1,11 +1,14 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { Link } from 'wouter';
 import { ArrowRight, Heart, Users, BookOpen, Droplets, Briefcase, Activity } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useListProgrammes, useListNews } from '@workspace/api-client-react';
 import heroImg from '@assets/generated_images/hero-home.jpg';
+import youthImg from '@assets/generated_images/youth-coding.jpg';
 import { format } from 'date-fns';
 
 export function Home() {
+  usePageMeta();
   const { data: programmes } = useListProgrammes({ featured: true });
   const { data: news } = useListNews({ featured: true, limit: 3 });
 
@@ -90,7 +93,7 @@ export function Home() {
               <div className="aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100 shadow-xl relative z-10">
                  {/* Fallback image if custom not found */}
                 <div className="w-full h-full bg-emerald-100 flex items-center justify-center text-emerald-800 font-medium text-lg border border-emerald-200">
-                  <img src="/attached_assets/generated_images/youth-coding.jpg" className="w-full h-full object-cover" alt="Youth coding" onError={(e) => { e.currentTarget.style.display='none' }} />
+                  <img src={youthImg} className="w-full h-full object-cover" alt="Young people learning to code" loading="lazy" decoding="async" />
                   <span className="absolute">Youth Empowerment</span>
                 </div>
               </div>

@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -21,6 +22,7 @@ const contactSchema = z.object({
 });
 
 export function Contact() {
+  usePageMeta("Contact Us", "Contact Kifalah Foundation Ghana with questions, ideas or partnership enquiries.");
   const { toast } = useToast();
   const submitContact = useSubmitContact();
   

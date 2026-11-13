@@ -8,6 +8,13 @@ import { useToast } from '@/hooks/use-toast';
 import { useSubscribeNewsletter } from '@workspace/api-client-react';
 import { siteConfig } from '@/config/site';
 
+const socialLinks = [
+  { label: 'Facebook', href: siteConfig.social.facebook, Icon: Facebook },
+  { label: 'X', href: siteConfig.social.x, Icon: Twitter },
+  { label: 'Instagram', href: siteConfig.social.instagram, Icon: Instagram },
+  { label: 'LinkedIn', href: siteConfig.social.linkedin, Icon: Linkedin },
+].filter((l) => /^https?:\/\//.test(l.href));
+
 export function Footer() {
   const { toast } = useToast();
   const subscribe = useSubscribeNewsletter();
@@ -49,20 +56,22 @@ export function Footer() {
             <p className="text-emerald-100/80 text-sm leading-relaxed mt-4">
               Dedicated to improving lives through education, economic empowerment, social welfare, humanitarian assistance, and sustainable livelihood programmes in Ghana.
             </p>
-            <div className="flex items-center gap-4 pt-2">
-              <a href="#" className="h-10 w-10 rounded-full bg-emerald-900 flex items-center justify-center hover:bg-amber-500 transition-colors">
-                <Facebook className="h-5 w-5" />
-              </a>
-              <a href="#" className="h-10 w-10 rounded-full bg-emerald-900 flex items-center justify-center hover:bg-amber-500 transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="h-10 w-10 rounded-full bg-emerald-900 flex items-center justify-center hover:bg-amber-500 transition-colors">
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a href="#" className="h-10 w-10 rounded-full bg-emerald-900 flex items-center justify-center hover:bg-amber-500 transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-            </div>
+            {socialLinks.length > 0 && (
+              <div className="flex items-center gap-4 pt-2">
+                {socialLinks.map(({ label, href, Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Kifalah Foundation on ${label}`}
+                    className="h-10 w-10 rounded-full bg-emerald-900 flex items-center justify-center hover:bg-amber-500 transition-colors"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </a>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Quick Links */}

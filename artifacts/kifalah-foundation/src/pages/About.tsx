@@ -1,8 +1,10 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { Layout } from '@/components/layout/Layout';
 import { Target, Eye, Heart, Award, Shield, Users } from 'lucide-react';
 import womenImg from '@assets/generated_images/women-empowerment.jpg';
 
 export function About() {
+  usePageMeta("About Us", "Learn about Kifalah Foundation Ghana: our mission, vision, values and the people behind our work.");
   return (
     <div className="flex flex-col w-full bg-gray-50 pb-24">
       {/* Page Header */}

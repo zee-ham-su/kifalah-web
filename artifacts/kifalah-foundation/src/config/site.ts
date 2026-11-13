@@ -7,6 +7,8 @@ export const siteConfig = {
     phones: [] as string[], // e.g. ["+233 ..."]
     emails: [] as string[], // e.g. ["info@yourdomain.org"]
   },
+  // Full profile URLs (https://...). Icons only appear for the ones you fill in.
+  social: { facebook: "", x: "", instagram: "", linkedin: "" },
   giving: {
     bank: {
       accountName: "", // must be the Foundation's registered name

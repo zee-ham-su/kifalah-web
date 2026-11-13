@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -34,6 +35,7 @@ const partnershipSchema = z.object({
 });
 
 export function GetInvolved() {
+  usePageMeta("Get Involved", "Volunteer with Kifalah Foundation Ghana, partner with us, or stay in touch through our newsletter.");
   const { toast } = useToast();
   const submitVolunteer = useSubmitVolunteerApplication();
   const submitPartner = useSubmitPartnershipEnquiry();

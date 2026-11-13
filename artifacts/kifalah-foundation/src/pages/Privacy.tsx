@@ -1,6 +1,8 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { Link } from 'wouter';
 
 export function Privacy() {
+  usePageMeta("Privacy Notice", "How Kifalah Foundation Ghana collects and uses your information.");
   return (
     <div className="flex flex-col w-full bg-white pb-24">
       <section className="bg-emerald-950 py-16">

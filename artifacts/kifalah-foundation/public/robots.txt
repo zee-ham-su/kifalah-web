@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /sign-in
+
+# Add the line below once the live domain is known, and publish a sitemap.xml there:
+# Sitemap: https://YOUR-DOMAIN/sitemap.xml

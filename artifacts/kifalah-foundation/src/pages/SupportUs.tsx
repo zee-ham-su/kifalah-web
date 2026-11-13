@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -42,6 +43,7 @@ const pledgeSchema = z
 type PledgeForm = z.infer<typeof pledgeSchema>;
 
 export function SupportUs() {
+  usePageMeta("Support Us", "Support Kifalah Foundation Ghana. See our official giving details and let us know about your pledge. This website does not process payments.");
   const { toast } = useToast();
   const createPledge = useCreateDonationRecord();
   const { data: programmes } = useListProgrammes();

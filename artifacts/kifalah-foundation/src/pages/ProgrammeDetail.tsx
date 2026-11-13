@@ -1,3 +1,4 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { useGetProgramme, useListProgrammes } from '@workspace/api-client-react';
 import { useParams, Link } from 'wouter';
 import { Button } from '@/components/ui/button';
@@ -10,6 +11,7 @@ export function ProgrammeDetail() {
   // We need to fetch all and find by slug, because the API get by ID takes numeric ID.
   const { data: programmes, isLoading } = useListProgrammes();
   const programme = programmes?.find(p => p.slug === slug);
+  usePageMeta(programme?.title ?? 'Programme', programme?.description);
 
   if (isLoading) {
     return (

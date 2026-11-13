@@ -1,8 +1,10 @@
+import { usePageMeta } from '@/lib/usePageMeta';
 import { useListNews } from '@workspace/api-client-react';
 import { Link } from 'wouter';
 import { format } from 'date-fns';
 
 export function News() {
+  usePageMeta("News and Stories", "News, stories and updates from Kifalah Foundation Ghana.");
   const { data: news, isLoading } = useListNews();
 
   return (

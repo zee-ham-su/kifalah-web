@@ -2,6 +2,13 @@
 
 Newest first. Add an entry with every meaningful change.
 
+## 2026-11-13: Page weight and SEO basics
+- **Code splitting.** Every page is its own chunk. Clerk and all admin code moved to `src/AdminApp.tsx`, loaded only for `/admin` and `/sign-in`. Main entry bundle: 692 kB -> 367 kB raw (114 kB gzip). Verified in a browser: public pages never request the admin chunk, and the public site no longer needs the Clerk key to load.
+- **Images.** The three shipped JPEGs recompressed (157/176/120 kB -> 123/143/91 kB). `Home.tsx` loaded one image from `/attached_assets/...`, a path that only exists on Replit's dev server (blank in production); it is now imported through the build. `clean-water.jpg` and `relief.jpg` (425 kB) are not used anywhere.
+- **SEO.** Per-page title and description via `src/lib/usePageMeta.ts` (including programme and news article pages). `index.html` no longer says "built on Replit. Update this description"; real description and `og:site_name`. `robots.txt` blocks `/admin` and `/sign-in`.
+- **Accessibility.** Removed `maximum-scale=1` from the viewport tag, which blocked pinch-zoom.
+- **Social icons** now come from `siteConfig.social` in `src/config/site.ts` and only show when a real URL is set (they all linked to `#`).
+
 ## 2026-11-11: Lite PRD changes (no online payments)
 Implements section 10 of "Simple Website PRD (No Online Payments)".
 
