@@ -3,8 +3,9 @@ import { Link } from 'wouter';
 import { ArrowRight, Heart, Users, BookOpen, Droplets, Briefcase, Activity } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useListProgrammes, useListNews } from '@workspace/api-client-react';
-import heroImg from '@assets/generated_images/hero-home.jpg';
-import youthImg from '@assets/generated_images/youth-coding.jpg';
+import { getProgrammeImageUrl } from '@/lib/programmeImages';
+import heroImg from '@assets/education/hero-classroom.jpg';
+import educationImg from '@assets/education/education-learning.jpg';
 import { format } from 'date-fns';
 
 export function Home() {
@@ -19,7 +20,7 @@ export function Home() {
         <div className="absolute inset-0 z-0">
           <img 
             src={heroImg} 
-            alt="Students studying outdoors under a tree in Ghana" 
+            alt="Students learning with their teacher in a Ghanaian classroom"
             className="w-full h-full object-cover object-center"
           />
           <div className="absolute inset-0 bg-emerald-950/70" />
@@ -93,8 +94,8 @@ export function Home() {
               <div className="aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-gray-100 shadow-xl relative z-10">
                  {/* Fallback image if custom not found */}
                 <div className="w-full h-full bg-emerald-100 flex items-center justify-center text-emerald-800 font-medium text-lg border border-emerald-200">
-                  <img src={youthImg} className="w-full h-full object-cover" alt="Young people learning to code" loading="lazy" decoding="async" />
-                  <span className="absolute">Youth Empowerment</span>
+                  <img src={educationImg} className="w-full h-full object-cover" alt="Students taking part in a classroom lesson" loading="lazy" decoding="async" />
+                  <span className="absolute">Education &amp; Scholarships</span>
                 </div>
               </div>
               <div className="absolute -bottom-8 -left-8 w-64 h-64 bg-amber-400 rounded-full blur-3xl opacity-20 z-0" />
@@ -119,31 +120,35 @@ export function Home() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {programmes ? programmes.slice(0, 3).map((programme) => (
-              <div key={programme.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
-                <div className="aspect-[16/9] bg-gray-100 relative overflow-hidden">
-                  {programme.imageUrl ? (
-                    <img src={programme.imageUrl} alt={programme.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                  ) : (
-                    <div className="w-full h-full bg-emerald-50 flex items-center justify-center">
-                      <BookOpen className="h-12 w-12 text-emerald-300" />
+            {programmes ? programmes.slice(0, 3).map((programme) => {
+              const imageUrl = getProgrammeImageUrl(programme.icon, programme.imageUrl);
+
+              return (
+                <div key={programme.id} className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow border border-gray-100 group">
+                  <div className="aspect-[16/9] bg-gray-100 relative overflow-hidden">
+                    {imageUrl ? (
+                      <img src={imageUrl} alt={programme.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    ) : (
+                      <div className="w-full h-full bg-emerald-50 flex items-center justify-center">
+                        <BookOpen className="h-12 w-12 text-emerald-300" />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    <div className="absolute bottom-4 left-4 right-4">
+                      <h3 className="text-xl font-bold text-white mb-1">{programme.title}</h3>
                     </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <h3 className="text-xl font-bold text-white mb-1">{programme.title}</h3>
+                  </div>
+                  <div className="p-6">
+                    <p className="text-gray-600 line-clamp-3 mb-6">
+                      {programme.description}
+                    </p>
+                    <Button variant="ghost" className="w-full text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800" asChild>
+                      <Link href={`/programmes/${programme.slug}`}>Explore Programme</Link>
+                    </Button>
                   </div>
                 </div>
-                <div className="p-6">
-                  <p className="text-gray-600 line-clamp-3 mb-6">
-                    {programme.description}
-                  </p>
-                  <Button variant="ghost" className="w-full text-emerald-700 hover:bg-emerald-50 hover:text-emerald-800" asChild>
-                    <Link href={`/programmes/${programme.slug}`}>Explore Programme</Link>
-                  </Button>
-                </div>
-              </div>
-            )) : (
+              );
+            }) : (
               // Skeleton loading
               [1, 2, 3].map((i) => (
                 <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 h-96 animate-pulse">

@@ -1,4 +1,5 @@
 import { usePageMeta } from '@/lib/usePageMeta';
+import { getProgrammeImageUrl } from '@/lib/programmeImages';
 import { useListProgrammes } from '@workspace/api-client-react';
 import { Link } from 'wouter';
 import { Button } from '@/components/ui/button';
@@ -44,14 +45,15 @@ export function Programmes() {
             <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
               {programmes?.map((programme) => {
                 const IconComponent = defaultIcons[programme.icon] || BookOpen;
+                const imageUrl = getProgrammeImageUrl(programme.icon, programme.imageUrl);
                 
                 return (
                   <div key={programme.id} className="bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all group flex flex-col md:flex-row h-full">
                     {/* Image Area */}
                     <div className="md:w-2/5 aspect-[4/3] md:aspect-auto bg-emerald-50 relative overflow-hidden shrink-0">
-                      {programme.imageUrl ? (
+                      {imageUrl ? (
                         <img 
-                          src={programme.imageUrl} 
+                          src={imageUrl}
                           alt={programme.title} 
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                         />

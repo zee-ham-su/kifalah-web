@@ -57,16 +57,15 @@ pnpm run typecheck
 pnpm run build
 ```
 
-Run the pieces (each needs its env vars; `PORT` is required):
+Run the pieces in separate terminals. The API uses port `5000`; the frontend uses `5173`.
 
 ```bash
-pnpm --filter @workspace/api-server run dev           # API
-pnpm --filter @workspace/kifalah-foundation run dev   # frontend (also needs BASE_PATH=/)
+PORT=5000 pnpm --filter @workspace/api-server run dev
+PORT=5173 BASE_PATH=/ pnpm --filter @workspace/kifalah-foundation run dev
 ```
 
-The frontend calls the API at `/api` on its own origin. On Replit the router serves both together. There is no
-dev proxy in `vite.config.ts`, so running the two locally needs a reverse proxy (or add a Vite `server.proxy`
-entry for `/api`).
+The Vite dev server proxies `/api` requests to the local API on port `5000`. On Replit, the router serves both
+together.
 
 ## Environment
 

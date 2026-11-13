@@ -1,4 +1,5 @@
 import { usePageMeta } from '@/lib/usePageMeta';
+import { getProgrammeImageUrl } from '@/lib/programmeImages';
 import { useGetProgramme, useListProgrammes } from '@workspace/api-client-react';
 import { useParams, Link } from 'wouter';
 import { Button } from '@/components/ui/button';
@@ -11,6 +12,9 @@ export function ProgrammeDetail() {
   // We need to fetch all and find by slug, because the API get by ID takes numeric ID.
   const { data: programmes, isLoading } = useListProgrammes();
   const programme = programmes?.find(p => p.slug === slug);
+  const imageUrl = programme
+    ? getProgrammeImageUrl(programme.icon, programme.imageUrl)
+    : null;
   usePageMeta(programme?.title ?? 'Programme', programme?.description);
 
   if (isLoading) {
@@ -38,9 +42,9 @@ export function ProgrammeDetail() {
     <div className="flex flex-col w-full bg-white pb-24">
       {/* Hero Image */}
       <section className="relative h-[40vh] min-h-[300px] w-full bg-emerald-950 flex items-center justify-center">
-        {programme.imageUrl && (
+        {imageUrl && (
           <>
-            <img src={programme.imageUrl} alt={programme.title} className="absolute inset-0 w-full h-full object-cover opacity-40" />
+            <img src={imageUrl} alt={programme.title} className="absolute inset-0 w-full h-full object-cover opacity-40" />
             <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 to-transparent" />
           </>
         )}
